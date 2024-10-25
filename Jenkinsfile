@@ -1,5 +1,19 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yaml """
+            apiVersion: v1
+            kind: Pod
+            spec:
+              containers:
+              - name: jnlp
+                image: google/cloud-sdk:latest
+                command:
+                - cat
+                tty: true
+            """
+        }
+    }
     stages {
         stage('Clone Repository') {
             steps {
