@@ -9,8 +9,11 @@ pipeline {
         stage('Static Code Analysis') {
             steps {
                 script {
-                    sonarQubeScanner {
-                        options: [ '-Dsonar.projectKey=HadoopWordCountKey' ]
+                    // Use SonarScanner tool configured in Jenkins
+                    def scannerHome = tool 'SonarScanner'
+                    // Set up the SonarQube environment for the analysis
+                    withSonarQubeEnv() {
+                        sh "$sq1/bin/sonar-scanner -Dsonar.projectKey=HadoopWordCountKey"
                     }
                 }
             }
