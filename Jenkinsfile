@@ -10,10 +10,10 @@ pipeline {
             steps {
                 script {
                     // Use SonarScanner tool configured in Jenkins
-                    def scannerHome = tool 'SonarScanner'
+                    def scannerHome = tool 'sonarqube-scanner'
                     // Set up the SonarQube environment for the analysis
                     withSonarQubeEnv() {
-                        sh "$sonarqube-scanner/bin/sonar-scanner -Dsonar.projectKey=HadoopWordCountKey"
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=HadoopWordCountKey"
                     }
                 }
             }
