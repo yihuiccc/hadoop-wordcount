@@ -25,7 +25,7 @@ pipeline {
                 sh """
                 gcloud dataproc jobs submit hadoop \
                     --cluster=hadoop-cluster \
-                    --region=central1 \
+                    --region=us-central1 \
                     --jar file:///usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
                     -- -files mapper.py,reducer.py \
                     -mapper "python3 mapper.py" \
