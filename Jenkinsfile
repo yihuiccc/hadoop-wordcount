@@ -13,7 +13,7 @@ pipeline {
                     def scannerHome = tool 'SonarScanner'
                     // Set up the SonarQube environment for the analysis
                     withSonarQubeEnv() {
-                        sh "$sq1/bin/sonar-scanner -Dsonar.projectKey=HadoopWordCountKey"
+                        sh "$sonarqube-scanner/bin/sonar-scanner -Dsonar.projectKey=HadoopWordCountKey"
                     }
                 }
             }
