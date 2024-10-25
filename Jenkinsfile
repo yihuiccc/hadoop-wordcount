@@ -30,8 +30,8 @@ pipeline {
                     -- -files mapper.py,reducer.py \
                     -mapper "python3 mapper.py" \
                     -reducer "python3 reducer.py" \
-                    -input gs://your-bucket/input.txt \
-                    -output gs://your-bucket/output/
+                    -input gs://dataproc-staging-us-central1-154464686072-1fevtjdd/input.txt \
+                    -output gs://dataproc-staging-us-central1-154464686072-1fevtjdd/wordcount-output/
                 """
             }
         }
