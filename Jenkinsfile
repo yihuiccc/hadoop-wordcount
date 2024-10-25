@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     sonarQubeScanner {
-                        options: [ '-Dsonar.projectKey=your-project-key' ]
+                        options: [ '-Dsonar.projectKey=HadoopWordCountKey' ]
                     }
                 }
             }
