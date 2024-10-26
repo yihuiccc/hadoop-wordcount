@@ -46,6 +46,16 @@ spec:
                 }
             }
         }
+        stage('Upload Scripts to GCS') {
+            steps {
+                container('gcloud') {
+                    sh '''
+                        gsutil cp mapper.py gs://dataproc-staging-us-central1-154464686072-1fevtjdd/mapper.py
+                        gsutil cp reducer.py gs://dataproc-staging-us-central1-154464686072-1fevtjdd/reducer.py
+                    '''
+                }
+            }
+        }
         stage('Submit Job to Dataproc') {
             when {
                 expression {
