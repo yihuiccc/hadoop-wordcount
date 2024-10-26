@@ -1,17 +1,7 @@
 pipeline {
     agent {
-        kubernetes {
-            yaml """
-            apiVersion: v1
-            kind: Pod
-            spec:
-              containers:
-              - name: jnlp
-                image: google/cloud-sdk:latest
-                command:
-                - cat
-                tty: true
-            """
+        docker {
+            image 'google/cloud-sdk:latest'
         }
     }
     stages {
