@@ -2,7 +2,7 @@
 import sys
 
 current_word = None
-current_count = 0
+current_count = 1
 word = None
 
 for line in sys.stdin:
