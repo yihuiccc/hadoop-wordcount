@@ -56,6 +56,14 @@ spec:
                 }
             }
         }
+        stage('Delete Existing Output Directory') {
+            steps {
+                // Delete the output directory if it exists
+                sh '''
+                    gsutil -m rm -r gs://dataproc-staging-us-central1-154464686072-1fevtjdd/wordcount-output || true
+                '''
+            }
+        }
         stage('Submit Job to Dataproc') {
             when {
                 expression {
