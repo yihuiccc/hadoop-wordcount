@@ -26,11 +26,11 @@ spec:
                 checkout scm
             }
         }
-        // stage('Clone Repository') {
-        //     steps {
-        //         git branch: 'main', url: 'https://github.com/yihuiccc/hadoop-wordcount.git'
-        //     }
-        // }
+        stage('Clone Repository') {
+            steps {
+                git branch: 'main', url: 'https://github.com/yihuiccc/hadoop-wordcount.git'
+            }
+        }
         stage('Static Code Analysis') {
             steps {
                 script {
