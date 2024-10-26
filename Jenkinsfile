@@ -26,9 +26,12 @@ spec:
                 checkout scm
             }
         }
-        stage('Clone Repository') {
+        stage('List Workspace Files') {
             steps {
-                git branch: 'main', url: 'https://github.com/yihuiccc/hadoop-wordcount.git'
+                container('gcloud') {
+                    // List files to verify presence
+                    sh 'ls -la'
+                }
             }
         }
         stage('Static Code Analysis') {
@@ -50,8 +53,9 @@ spec:
                 }
             }
             steps {
-                sh """
-                gcloud dataproc jobs submit hadoop \
+                container('gcloud') {
+                    sh '''
+                    gcloud dataproc jobs submit hadoop \
                     --cluster=hadoop-cluster \
                     --region=us-central1 \
                     --jar file:///usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
@@ -60,7 +64,8 @@ spec:
                     -reducer "python3 reducer.py" \
                     -input gs://dataproc-staging-us-central1-154464686072-1fevtjdd/input.txt \
                     -output gs://dataproc-staging-us-central1-154464686072-1fevtjdd/wordcount-output/
-                """
+                    '''
+                }
             }
         }
     }
