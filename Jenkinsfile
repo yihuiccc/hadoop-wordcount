@@ -68,8 +68,10 @@ spec:
                     gcloud dataproc jobs submit hadoop \
                     --cluster=hadoop-cluster \
                     --region=us-central1 \
+                    --files=gs://dataproc-staging-us-central1-154464686072-1fevtjdd/mapper.py,gs://dataproc-staging-us-central1-154464686072-1fevtjdd/reducer.py \
                     --jar file:///usr/lib/hadoop-mapreduce/hadoop-streaming.jar \
-                    -- -files gs://dataproc-staging-us-central1-154464686072-1fevtjdd/mapper.py, gs://dataproc-staging-us-central1-154464686072-1fevtjdd/reducer.py \
+                    -- \
+                    // -- -files gs://dataproc-staging-us-central1-154464686072-1fevtjdd/mapper.py, gs://dataproc-staging-us-central1-154464686072-1fevtjdd/reducer.py \
                     -mapper "python3 mapper.py" \
                     -reducer "python3 reducer.py" \
                     -input gs://dataproc-staging-us-central1-154464686072-1fevtjdd/input.txt \
