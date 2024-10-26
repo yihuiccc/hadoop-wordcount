@@ -1,7 +1,22 @@
 pipeline {
     agent {
-        docker {
-            image 'google/cloud-sdk:latest'
+        kubernetes {
+            label 'gcloud-agent'
+            defaultContainer 'gcloud'
+            yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    jenkins-agent: gcloud-agent
+spec:
+  containers:
+  - name: gcloud
+    image: google/cloud-sdk:latest
+    command:
+    - cat
+    tty: true
+"""
         }
     }
     stages {
