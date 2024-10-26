@@ -20,11 +20,17 @@ spec:
         }
     }
     stages {
-        stage('Clone Repository') {
+        stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/yihuiccc/hadoop-wordcount.git'
+                // Checkout the repository containing mapper.py and reducer.py
+                checkout scm
             }
         }
+        // stage('Clone Repository') {
+        //     steps {
+        //         git branch: 'main', url: 'https://github.com/yihuiccc/hadoop-wordcount.git'
+        //     }
+        // }
         stage('Static Code Analysis') {
             steps {
                 script {
