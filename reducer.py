@@ -17,9 +17,9 @@ for line in sys.stdin:
         current_count += count
     else:
         if current_word:
-            print(f"{current_word}\t{current_count}")
+            print(f"Modified: {current_word}\t{current_count}")
         current_word = word
         current_count = count
 
 if current_word == word:
-    print(f"{current_word}\t{current_count}")
+    print(f"Modified: {current_word}\t{current_count}")
